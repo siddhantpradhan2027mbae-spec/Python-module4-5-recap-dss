@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 & 5 Recap — Doubt Solving Session</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2455E6; --blue-dark:#133B9C; --blue-soft:#E4EBFF; --gold:#F4B400; --gold-soft:#FFF3D6;
+  --green:#1B9C63; --green-soft:#E1F6EC; --purple:#7B5CF0; --purple-soft:#ECE7FE;
+  --red:#E4483A; --red-soft:#FDE7E5; --ink:#16202E; --muted:#7A88A0; --bg:#F6F9FF; --card:#fff; --line:#DCE4F5;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Poppins',sans-serif;margin:0;}
+code{font-family:'JetBrains Mono',monospace;font-size:.92em;color:var(--blue-dark);}
+
+header{background:radial-gradient(900px 320px at 10% -10%,#DCE7FF 0,transparent 60%),radial-gradient(700px 300px at 100% 0,#FFF0CE 0,transparent 55%),#fff;border-bottom:1px solid var(--line);padding:40px 28px 28px;}
+.hero{max-width:980px;margin:0 auto;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.pill{font-size:.76rem;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--blue-soft);color:var(--blue-dark);}
+.pill.gold{background:var(--gold-soft);color:#8A6100;border-color:#F3DFA0;}
+header h1{font-size:2rem;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;}
+header p.lede{color:var(--muted);max-width:68ch;margin:0;}
+.credit-line{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:.86rem;color:var(--muted);}
+.credit-line strong{color:#46536A;}
+
+.layout{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;padding:26px 24px;}
+.sidebar{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow-y:auto;}
+.nav-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:0 1px 2px rgba(22,32,46,.04),0 8px 24px -12px rgba(22,32,46,.12);}
+.nav-group-title{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px 6px;}
+.nav-group-title:first-child{margin-top:0;}
+.nav-link{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:8px;font-size:.82rem;font-weight:600;color:#46536A;text-decoration:none;cursor:pointer;}
+.nav-link:hover{background:var(--blue-soft);}
+.nav-link.active{background:var(--blue);color:#fff;}
+.progress-track{height:6px;border-radius:999px;background:var(--blue-soft);overflow:hidden;margin:10px 6px 4px;}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .2s;}
+.progress-label{font-size:.7rem;color:var(--muted);margin:0 6px 8px;}
+
+.content{min-width:0;}
+.module-divider{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.3rem;color:var(--blue-dark);margin:26px 0 8px;padding-bottom:8px;border-bottom:3px solid var(--blue);}
+.module-use-case{color:var(--muted);font-size:.9rem;margin-bottom:18px;}
+
+.topic{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:20px;box-shadow:0 1px 2px rgba(22,32,46,.04),0 8px 24px -12px rgba(22,32,46,.12);scroll-margin-top:16px;}
+.topic-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+.topic-num{flex:none;width:32px;height:32px;border-radius:10px;background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;}
+.topic h2{font-size:1.25rem;}
+
+.ctx-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+@media(max-width:860px){.ctx-grid{grid-template-columns:1fr;}}
+.ctx-box{border-radius:10px;padding:12px 14px;font-size:.85rem;line-height:1.55;}
+.ctx-box.why{background:var(--blue-soft);color:var(--blue-dark);}
+.ctx-box.problem{background:var(--gold-soft);color:#8A6100;}
+.ctx-box.where{background:var(--green-soft);color:#116B44;}
+.ctx-box .ctx-label{display:block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;opacity:.85;}
+
+.live-problem{background:#FBFBFF;border:1.5px solid var(--purple);border-radius:12px;padding:16px 18px;}
+.live-problem .lp-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--purple);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.live-problem p.statement{font-size:.95rem;color:var(--ink);margin:0 0 10px;}
+.sample{background:#16202E;color:#E4EBFF;border-radius:8px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:.8rem;margin-bottom:10px;overflow-x:auto;white-space:pre;}
+.steps-label{font-size:.78rem;font-weight:700;color:var(--ink);margin:10px 0 6px;}
+.steps-list{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
+.steps-list li{display:flex;gap:8px;align-items:flex-start;font-size:.84rem;color:#46536A;}
+.steps-list .snum{flex:none;width:20px;height:20px;border-radius:50%;background:var(--purple-soft);color:var(--purple);font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+
+.topic-footer{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);}
+.checkbox{width:17px;height:17px;border-radius:4px;border:1.5px solid var(--line);cursor:pointer;background:#fff;}
+.checkbox.checked{background:var(--green);border-color:var(--green);position:relative;}
+.checkbox.checked::after{content:"✓";position:absolute;inset:0;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;}
+.topic-footer label{font-size:.8rem;color:var(--muted);cursor:pointer;}
+
+footer{max-width:1200px;margin:0 auto;padding:16px 24px 60px;color:var(--muted);font-size:.85rem;text-align:center;}
+footer strong{color:#46536A;}
+@media(max-width:880px){.layout{grid-template-columns:1fr;} .sidebar{position:static;max-height:none;order:-1;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div class="badge-row">
+      <span class="pill">📘 Python for Data Engineering Cohort</span>
+      <span class="pill gold">Doubt Solving Session · Module 4 + Module 5</span>
+    </div>
+    <h1>Before We Write a Single Line — Why, What Problem, Where Used</h1>
+    <p class="lede">
+      Every topic below follows the same order: why we're learning it, what problem it actually
+      solves, and where it shows up in a real job. Only after that comes today's live problem —
+      I'll solve it on screen, step by step, and every step gets tied back to the concept above it.
+      This page has problem statements only, no solved code. Tick a topic off once we've actually
+      solved it together in class.
+    </p>
+    <div class="credit-line">Curriculum designed and taught by <strong>Siddhant Deepak Kumar Pradhan</strong>.</div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="nav-card">
+      <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+      <div class="progress-label" id="progLabel">0 / 17 solved in class</div>
+      <div id="navList"></div>
+    </div>
+  </nav>
+
+  <main class="content" id="content"></main>
+</div>
+
+<footer>Module 4 & 5 Recap — Doubt Solving Session, for the <strong>Python for Data Engineering</strong> cohort. Curriculum designed and taught by <strong>Siddhant Deepak Kumar Pradhan</strong>.</footer>
+
+<script>
+const MODULES = [
+{
+  name: "Module 4 — Control Flow, Loops & Error Handling",
+  useCase: "Use case: building robust, branching logic in data pipelines.",
+  topics: [
+    {
+      id:"m4-conditionals", title:"Conditional Statements — if, if-else, elif, Nested Conditions",
+      why:"Any real program has to behave differently depending on the data it sees. Without a way to branch, every program would do the exact same thing no matter what input it got — which is useless for anything beyond a calculator.",
+      problem:"Raw data is rarely all one shape — some records need one kind of treatment, some need another, and some combinations of conditions need a DIFFERENT decision than either condition alone would give. Nested conditions solve the case where the right decision depends on more than one thing being true at once.",
+      where:"A shipment approval system, a loan eligibility check, a discount-eligibility engine — anywhere a decision depends on more than one fact about the data at the same time.",
+      statement:"Vertex Logistics needs a shipment approval check. Given a package's weight, its destination zone, and whether it's insured, decide: reject anything over 1000kg outright; of what's left, flag anything going to a \"restricted\" zone that ISN'T insured for manual review; approve everything else.",
+      sample:`Test these four combinations:
+(weight=1200, zone="normal",     insured=True)
+(weight=500,  zone="restricted", insured=False)
+(weight=500,  zone="restricted", insured=True)
+(weight=300,  zone="normal",     insured=False)`,
+      steps:["Write down, in plain English, every distinct outcome the function can produce (how many are there?)",
+             "Pick ONE condition to check FIRST — which one, if true, ends the decision immediately with no further checking needed?",
+             "For whatever's left after that first check, is there a second condition that needs BOTH a zone check AND an insurance check together? That's your nested condition.",
+             "Write the if/elif/else skeleton with just 'pass' in each branch first, then fill in one branch at a time",
+             "Run all four test combinations and check each one lands in the outcome you predicted on paper"]
+    },
+    {
+      id:"m4-loops", title:"For Loop, While Loop, Nested Loops",
+      why:"Data almost never arrives as a single value — it arrives as rows, lists, grids, batches. A loop is how you tell Python \"do this same step for every item,\" instead of writing the same line hundreds of times by hand.",
+      problem:"A for loop is for when you know what you're iterating over (a list, a grid). A while loop is for when you don't know in advance how many times you'll repeat — you keep going until some condition changes. A nested loop is for when your data itself is nested — a grid, a table, a list of lists.",
+      where:"Scanning every row of a CSV (for), processing a queue until it's empty (while), walking a warehouse grid or a spreadsheet of rows-and-columns (nested for).",
+      statement:"Part A — nested for loop: Vertex Logistics has a warehouse rack represented as a grid (a list of lists), where 1 means occupied and 0 means empty. Count how many slots are empty, and print out the exact row and column of each empty slot as you find it. Part B — while loop: a list of truck IDs is waiting to be dispatched. Keep dispatching the FRONT truck of the queue, one at a time, printing which truck just left and what's still waiting, until the queue is completely empty.",
+      sample:`rack_grid = [[1,0,1],
+             [0,0,1],
+             [1,1,0]]
+
+truck_queue = ["TRK-1", "TRK-2", "TRK-3"]`,
+      steps:["For the grid: what do you need TWO loop variables for, instead of one? (hint: a grid has two directions)",
+             "Decide what 'row index' and 'column index' actually represent before writing any code — draw the grid on the board if needed",
+             "For the queue: what's the STOPPING condition for the while loop? Write that condition first, before the loop body",
+             "Trace by hand what happens to the queue after removing just the FIRST item — which Python operation removes the front item specifically, not just any item?",
+             "Run both and compare the printed trace to what you predicted by hand"]
+    },
+    {
+      id:"m4-loopcontrol", title:"Loop Control — break, continue, pass",
+      why:"Sometimes you need a loop to behave differently mid-way through — stop completely, skip just this one item, or leave a deliberate placeholder for logic you haven't written yet. Without these, a loop can only ever run start-to-finish on every item, no exceptions.",
+      problem:"continue solves \"skip this one bad item, but keep processing the rest.\" break solves \"stop the whole loop right now, we don't need to look at anything else.\" pass solves \"I need this branch to exist syntactically, but there's nothing to do here yet\" — a stand-in, not a skip.",
+      where:"Skipping corrupted rows in a dataset without stopping the whole pipeline (continue). Stopping a search the instant a match is found instead of wastefully checking everything else (break). Leaving an unfinished branch in code that still needs to run without crashing (pass).",
+      statement:"Vertex Logistics has a list of shipment weights, but some are 0 or negative — placeholder values from a broken sensor, not real weights. Skip those specifically. There's also a hard safety limit of 1000kg — the moment you hit a weight over that, stop processing the list entirely and report it, because anything after an overweight shipment doesn't even matter until that's handled.",
+      sample:`weights = [50, -1, 80, 0, 1500, 60]
+hard_limit = 1000`,
+      steps:["Which check needs to come FIRST in the loop body — the invalid-value check or the hard-limit check? What goes wrong if you swap the order?",
+             "For the invalid values: write the condition, then continue — and explain out loud why continue, not break, belongs here",
+             "For the hard limit: write the condition, then break — and explain why THIS one should stop everything, unlike the first case",
+             "Add one 'pass' branch somewhere plausible (e.g. 'if weight is exactly 1000: pass  # handle boundary case later') just to show it's syntactically valid and does nothing",
+             "Run it and check which weights got processed, which got skipped, and exactly where the loop actually stopped"]
+    },
+    {
+      id:"m4-tryexcept", title:"try, except, finally — Exception Handling",
+      why:"Real data is messy — a field that should be a number sometimes isn't. Without exception handling, one single bad row crashes your ENTIRE program, even if 10,000 other rows were perfectly fine.",
+      problem:"try/except lets you attempt something risky and recover gracefully if it fails, instead of crashing. finally solves a different problem: \"this cleanup step must run NO MATTER WHAT, whether the risky thing succeeded or failed\" — like closing a file or logging that a record was handled.",
+      where:"Converting a CSV column of text to numbers where some rows have typos. Always logging \"record processed\" for auditing, pass or fail, so nothing silently disappears from a report.",
+      statement:"Vertex Logistics receives delivery confirmation records where the weight field is sometimes garbage text instead of a number. Convert each one to a number if possible; if it fails, print that it was skipped — but EVERY record, successful or not, needs a \"record processed\" line printed as proof it was looked at, for the audit log.",
+      sample:`records = ["120", "abc", "300"]`,
+      steps:["Identify exactly which single line of code is the risky one that might fail — only that line needs to be inside try",
+             "Write the except block first assuming it catches the RIGHT error type — which built-in error does a bad int() conversion actually raise?",
+             "Add the finally block LAST, and explain out loud why its line runs for 'abc' too, even though the conversion failed for that one",
+             "Predict, before running, how many times \"record processed\" will print in total",
+             "Run it and confirm your prediction, then try changing one record to see the output change predictably"]
+    },
+    {
+      id:"m4-multiexcept", title:"Multiple Exception Handling",
+      why:"A single risky operation can often fail in more than one distinct way, and the right response is usually different for each one. Catching everything with one generic except hides WHICH problem actually happened, which makes debugging much harder later.",
+      problem:"When a lookup can fail because a key is missing AND a conversion can fail because the text isn't a number, those are two DIFFERENT problems needing two different error messages — not one blanket \"something went wrong.\"",
+      where:"A pricing lookup that depends on both a valid zone code (dictionary lookup) and a valid quantity (type conversion) — two independent things that can each go wrong for a different reason.",
+      statement:"Vertex Logistics calculates a shipment's total cost from a zone-rate table and a quantity. The zone might not exist in the rate table at all, OR the quantity might arrive as non-numeric text. Catch each failure separately with its own specific message — don't lump them into one generic error.",
+      sample:`zone_rates = {"North": 2.5, "South": 2.8}
+
+test_cases = [("North", "10"), ("East", "10"), ("North", "ten")]`,
+      steps:["Identify the TWO separate operations inside the risky code, and which built-in error each one raises if it fails",
+             "Write two separate except blocks, each naming its specific error type, not a single except that catches both",
+             "Explain out loud: if BOTH things were wrong in the same call, which except would actually fire, and why only one ever does",
+             "Run all three test cases and check each one prints the message matching its SPECIFIC failure, not a generic one",
+             "Try adding a third kind of broken input and figure out which except block (if any) would catch it"]
+    },
+    {
+      id:"m4-realerrors", title:"Real Error Scenarios in Data Processing",
+      why:"In a real pipeline, a single batch of records can fail for genuinely different reasons — a missing field here, an empty list there, bad arithmetic somewhere else. One-size-fits-all error handling isn't realistic once the data gets messy enough.",
+      problem:"This combines everything above into one realistic situation: a batch of order records where SOME are missing a required field entirely (not just a bad value), some have an empty list where data was expected, and you need the pipeline to keep going despite all of it, logging what went wrong per record.",
+      where:"This is exactly what a daily batch job processing yesterday's orders looks like — some records are fine, some are broken in different ways, and the job has to finish and report on ALL of them, not crash on the first bad one.",
+      statement:"Vertex Logistics has a batch of order dictionaries. Some are missing the \"order_id\" key completely. Some have an empty \"items\" list. For every order, try to print its first item's price and the average price across all its items — catch each distinct failure with its own except, and add one final catch-all except Exception as a safety net for anything unexpected.",
+      sample:`orders = [
+    {"order_id": "O1", "items": [100, 200], "customer": "Aditi"},
+    {"items": [50], "customer": "Rohit"},
+    {"order_id": "O3", "items": [], "customer": "Meera"},
+    {"order_id": "O4", "items": [300, 0], "customer": "Kabir"},
+]`,
+      steps:["For each order, write down BEFORE coding: which line could raise KeyError, which line could raise IndexError",
+             "For the EMPTY items case — note that items[0] will fail with IndexError before the average line even gets a chance to divide by zero. Which error fires first, and why does order matter inside the try block?",
+             "Write the except blocks in a sensible order — specific errors first, then the catch-all except Exception last",
+             "Run it on all four orders and check each one hit the except you predicted",
+             "Change O4's items to an empty list too and predict which except now fires for it, before running"]
+    },
+    {
+      id:"m4-interview", title:"List, Dict, Tuple Interview Scenarios",
+      why:"Lists, dicts, and tuples are the three structures nearly every Python interview question is actually testing, dressed up as something else. Knowing the right operation on the right structure is what separates a 2-line answer from a 20-line one.",
+      problem:"Three classic situations: removing duplicates while keeping the original order (lists alone can't do this cleanly without help), merging two configurations where one should override the other (plain dicts need a specific merge rule), and swapping two values without a temporary third variable (what tuples make trivial).",
+      where:"Deduplicating a list of order IDs that got logged twice by a flaky sensor. Merging a default configuration with a site-specific override. Swapping two values during a sort or a data-cleaning step.",
+      statement:"Three short ones: (1) Given a list of order IDs with duplicates, build a new list with duplicates removed but the ORIGINAL ORDER preserved. (2) Given a base config dict and an override dict, merge them so the override's values win on any shared key. (3) Swap the values of two variables without using a third temporary variable.",
+      sample:`raw_ids = ["O1","O2","O1","O3","O2","O4"]
+
+base_config = {"region":"North", "currency":"INR"}
+override_config = {"currency":"USD", "priority":"High"}
+
+a, b = 10, 20`,
+      steps:["For dedup: why can't you just do list(set(raw_ids))? What does that break, specifically, about the original order?",
+             "What data structure can check \"have I seen this before\" in one step, which you'll need alongside your result list?",
+             "For the merge: what Python syntax lets you combine two dicts in one expression, and which one \"wins\" when a key exists in both?",
+             "For the swap: what does Python let you do on the LEFT side of an assignment that most languages don't?",
+             "Run all three and verify order was preserved, override won the conflict, and the swap actually happened"]
+    },
+  ]
+},
+{
+  name: "Module 5 — Functions, Core to Advanced",
+  useCase: "Use case: writing reusable, modular code for data transformation logic.",
+  topics: [
+    {
+      id:"m5-builtin", title:"System-Defined Functions — Type Conversion, Math, Sequence/Iterator, I/O, File Handling",
+      why:"Python ships with dozens of ready-made functions for extremely common jobs — converting types, basic math, scanning sequences. Writing your own version of sum() or int() from scratch every time would be reinventing the wheel badly, and slower.",
+      problem:"Raw data almost never arrives as the exact type you need. Text that should be numbers, messy entries mixed with clean ones, and needing a quick total/min/max without writing your own loop every single time.",
+      where:"Any data cleaning step — reading a form field as text and needing it as a number, or quickly summarizing a column of values without rolling your own aggregation logic.",
+      statement:"Vertex Logistics has a list of package weights as text, some with a \"kg\" suffix, and one literally saying \"not recorded\". Strip the suffix, convert to a number, skip anything that fails to convert, and report the total, minimum, and maximum of whatever's left.",
+      sample:`raw_weights = ["120kg", "45kg", "not recorded", "60kg"]`,
+      steps:["Decide the ORDER of operations per item — does the \"kg\" need to come off before or after trying int()?",
+             "Which built-in string method removes a specific suffix?",
+             "Wrap just the conversion step in a try/except, reusing what we covered in Module 4",
+             "Once you have a clean list, which three built-ins give you total, smallest, and largest in one call each?",
+             "Run it and sanity-check the three numbers by eyeballing the original list"]
+    },
+    {
+      id:"m5-userfunc", title:"User-Defined Functions — Defining and Calling",
+      why:"The moment the SAME piece of logic needs to run in more than one place, writing it out twice means fixing it twice later when it inevitably changes. A function is Python's answer to \"write it once, use it everywhere.\"",
+      problem:"Classifying or transforming a value usually needs the SAME set of rules applied again and again across many different pieces of data.",
+      where:"Any reusable business rule — classifying a shipment, calculating a fee, validating an input — that gets called from many different parts of a bigger program.",
+      statement:"Write a function that classifies a shipment by its weight into \"Light\" (under 50kg), \"Medium\" (50 to 500kg inclusive), or \"Heavy\" (over 500kg). Call it on three different weights.",
+      sample:`test_weights = [20, 200, 900]`,
+      steps:["Write the def line first with just 'pass' inside — decide the function's name and its one parameter before writing any logic",
+             "This is really an if/elif/else from Module 4 — which boundary values need <= versus < to avoid an off-by-one mistake?",
+             "Replace 'pass' with the actual branches, one at a time, testing as you go",
+             "Call the function on all three test weights and check each lands in the category you'd expect by hand",
+             "Try a boundary value like exactly 50 and exactly 500 — do they land where you intended?"]
+    },
+    {
+      id:"m5-params", title:"Parameter Types — Positional, Keyword, Default",
+      why:"Not every value a function needs has an obvious \"usual\" setting — but some do. Defaults let a function assume a sensible value most of the time while still allowing it to be overridden on the rare occasion it needs to be different.",
+      problem:"Forcing a caller to type out EVERY value, every single time, even the ones that are almost always the same, makes every call longer and more error-prone than it needs to be.",
+      where:"A pricing or quoting function where most customers get the standard rate, but a specific customer occasionally negotiates a different one.",
+      statement:"Write a shipment quote function that takes weight and distance as required values, and a rate_per_kg that defaults to 5 but can be overridden. Call it once using the default rate, and once overriding it.",
+      sample:`quote(100, 300)                      # should use the default rate
+quote(100, 300, rate_per_kg=8)        # should override it`,
+      steps:["Write the def line — which parameters have NO default, and must they come before the one that does?",
+             "Write the one-line formula using all three parameters by name, not by guessing their order",
+             "Call it once with just the two required values — predict what rate gets used before running",
+             "Call it again overriding rate_per_kg by keyword — predict the new result by hand first",
+             "Compare both results to your hand calculations"]
+    },
+    {
+      id:"m5-argskwargs", title:"*args and **kwargs",
+      why:"Sometimes you genuinely don't know in advance how many values, or which named extras, a function call will need to carry. Fixed parameters can't flex to handle \"anywhere from 1 to 50 values\" — *args and **kwargs can.",
+      problem:"Logging an action where the number of related IDs varies every time, PLUS wanting to attach any extra context (who, when, which truck) without redesigning the function's signature every time a new piece of context shows up.",
+      where:"A logging or audit function that needs to accept a flexible number of IDs plus whatever extra metadata happens to be relevant for that particular call.",
+      statement:"Write a dispatch-logging function that accepts any number of shipment IDs, plus any number of extra named details (like which truck, which driver), and prints all of it clearly.",
+      sample:`log_dispatch("SHP-1", "SHP-2", "SHP-3", truck="TRK-7", driver="Rahul")`,
+      steps:["Decide which part of the signature needs *args (the shipment IDs) and which needs **kwargs (the extra details) — why can't one parameter do both jobs?",
+             "Print the *args tuple directly first, before looping over it, to SEE what data type it actually is",
+             "Loop over the **kwargs dictionary using .items() — what does that give you per iteration?",
+             "Call it with a different number of shipment IDs and a different number of extra details, and confirm it still works without changing the function",
+             "Explain out loud why this one function signature can handle calls that look completely different in length"]
+    },
+    {
+      id:"m5-returns", title:"Return Values",
+      why:"A function that only prints its answer is a dead end — the result disappears the moment it's shown. return is what lets a function's output actually be USED by whatever code called it, stored, passed along, or combined with something else.",
+      problem:"Needing MORE than one related answer back from a single calculation — like both a total AND an average from the same data — without running the calculation twice or writing two separate functions that repeat the same work.",
+      where:"Any summary calculation needed in more than one form at once — a report that needs both the total cost and the average cost of the same shipment batch.",
+      statement:"Write a function that takes a list of shipment costs and returns BOTH the total and the average in a single call. Unpack the result into two separate variables.",
+      sample:`cost_summary([100, 200, 300])`,
+      steps:["Write the two calculations as separate lines first, using normal variables, before worrying about return at all",
+             "What does writing 'return a, b' with a comma actually build behind the scenes?",
+             "Call the function and unpack its result into two variable names in one line",
+             "Predict both numbers by hand before running",
+             "Explain what would print if you forgot to unpack and just printed the raw function call result instead"]
+    },
+    {
+      id:"m5-scope", title:"Variable Scope — Local, Global",
+      why:"When many different functions all need to see or update the SAME running number (like a counter), you need to understand exactly which variable a function is actually touching — its own private copy, or the shared one everyone else sees too.",
+      problem:"A running total or counter that must persist and accumulate across MANY separate function calls, not reset back to zero every single time a function runs.",
+      where:"A dispatch counter, a running total of items processed today, any single shared number that many different parts of a program need to update consistently.",
+      statement:"Write a function that increases a shared shipment counter by one every time it's called, and returns the new count. Call it twice and show the count genuinely went up both times.",
+      sample:`record_shipment()   # should return 1
+record_shipment()   # should return 2`,
+      steps:["Where does the counter variable need to be CREATED — inside the function, or outside it? Why?",
+             "What keyword does the function need to use before it can CHANGE that outside variable, specifically because it's being reassigned, not just read?",
+             "Call the function twice in a row and predict both return values before running",
+             "Explain what would happen instead if the counter were created fresh INSIDE the function every time",
+             "Try removing the keyword deliberately and read the exact error Python gives you"]
+    },
+    {
+      id:"m5-lambda", title:"Lambda Functions — Map, Filter, Reduce",
+      why:"Some transformations are short enough that writing a full named function for them feels like overkill — a lambda is a one-line, throwaway function for exactly that case, usually used immediately and never again.",
+      problem:"Filtering a list down to only the items matching some condition, THEN transforming just those survivors, is an extremely common two-step pattern that filter() and map() were built specifically for.",
+      where:"Picking out only the overweight shipments from a batch, then converting just their costs into a different currency — without touching the shipments that didn't qualify.",
+      statement:"Given a list of shipment dictionaries (each with a weight and a cost), filter down to only the ones over 1000kg, then convert just their cost into USD (divide by 83, round to 2 decimals).",
+      sample:`shipments = [{"id":"S1","weight":1200,"cost":500},
+             {"id":"S2","weight":300, "cost":200}]`,
+      steps:["Write the filter() call first and print its result on its own — confirm only the overweight ones survived, BEFORE adding the map step",
+             "Write the lambda for filter() — what should it return, True or False, and based on which field?",
+             "Now feed ONLY the filter's output into map() — write that lambda to do the currency conversion",
+             "Predict which shipment(s) should survive and what their converted cost should be, before running",
+             "Explain out loud why the shipment that got filtered OUT never even reaches the map() step"]
+    },
+    {
+      id:"m5-decorators", title:"Decorators — Function Decorators, Chaining",
+      why:"Adding the SAME extra behavior (logging, validation, timing) to many different functions by copy-pasting that code into each one means fixing it in many places later. A decorator lets you write that behavior once and attach it anywhere with one line.",
+      problem:"Wanting to validate an input BEFORE a function runs, and separately log every call the function receives — as two independent, reusable, stackable pieces of behavior, not tangled together inside the function itself.",
+      where:"A payment-processing function that needs input validation and call logging added on top, without rewriting either piece of logic inside every function that needs them.",
+      statement:"Write two decorators: one that logs the name of the function being called, and one that rejects (returns None, no further processing) any shipment with a weight of 0 or less. Apply BOTH to the same function and test with a valid and an invalid weight.",
+      sample:`process_shipment(500)   # should log, then process normally
+process_shipment(-10)   # should log, then get rejected by validation`,
+      steps:["Write the LOGGING decorator alone first, apply it to the function by itself, and confirm it works before adding the second one",
+             "Write the VALIDATION decorator alone next, apply it by itself, and confirm the rejection branch actually works",
+             "Now stack both decorators on the same function — which one goes on top, and does the order actually change the behavior here?",
+             "Predict the exact print order for process_shipment(500) before running — which decorator's print statement appears first?",
+             "Run both test cases and compare the actual order to your prediction"]
+    },
+    {
+      id:"m5-modules", title:"Modules & Imports — Creating and Using Packages",
+      why:"Once a project grows past a handful of functions, keeping everything in one giant file becomes unmanageable. Splitting code into separate files — and knowing how to correctly pull pieces back together — is what makes a codebase navigable instead of a wall of scrolling.",
+      problem:"Needing to reuse a function written in one file from a completely different file, without copy-pasting its code, AND wanting a file to behave differently depending on whether it's being run directly or just being imported for its functions.",
+      where:"Any real codebase of more than one file — a pricing module used by several different scripts, each importing only the specific function it needs.",
+      statement:"Split a discount calculation into its own file (pricing.py) with one function, apply_discount. Import and use JUST that function from a separate main script. Then add a self-test to pricing.py that only runs when pricing.py itself is executed directly, never when it's imported.",
+      sample:`# from a separate file:
+from vertexpkg.pricing import apply_discount
+apply_discount(1000, 10)`,
+      steps:["Write pricing.py first, as its own standalone file, and test it runs correctly on its own",
+             "Write the import line in the second file — which exact syntax imports ONLY apply_discount, not everything in pricing.py?",
+             "Add the if __name__ == \"__main__\": guard to pricing.py — what hidden variable is this actually checking?",
+             "Run pricing.py directly and confirm the self-test fires",
+             "Then run the OTHER file that imports it, and confirm the self-test does NOT fire this time"]
+    },
+    {
+      id:"m5-stdlib", title:"Standard Library Modules — os, sys, math, datetime, pathlib",
+      why:"These five modules ship with Python itself and cover jobs every real program eventually needs — reading the system environment, working with dates, building file paths correctly. Knowing them means not reinventing basic plumbing that already exists.",
+      problem:"Getting the exact current date/time for a log entry, building a file path that works whether the code runs on Windows or Linux, and reading a configuration value that should come from the environment, not be hardcoded.",
+      where:"A dispatch log that timestamps every entry, a report-generation script that needs to build a path to save its output, a script that reads a depot code from the environment instead of hardcoding it.",
+      statement:"Write a small block that: gets the current date and time formatted as \"YYYY-MM-DD HH:MM\" using datetime; builds a file path for reports/vertex/dispatch_log.csv using pathlib; and reads an environment variable called VERTEX_DEPOT_CODE, falling back to \"DEPOT-DEFAULT\" if it isn't set.",
+      sample:`# no input data — this one reads from the system itself`,
+      steps:["Start with datetime — which method gets the CURRENT moment, and which method turns it into a specific text format?",
+             "Move to pathlib — which operator joins path pieces together, and why is it better than typing '/' by hand?",
+             "Finish with os.environ.get() — what's the SECOND argument to .get() actually for?",
+             "Run it once as-is and note the fallback value prints",
+             "If you have time: actually set the VERTEX_DEPOT_CODE environment variable in the terminal first, then run it again and watch the real value come through instead"]
+    },
+  ]
+}
+];
+
+const content = document.getElementById('content');
+const navList = document.getElementById('navList');
+const STORAGE_KEY = 'm45_dss_progress_v1';
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { saved = {}; }
+
+let navHTML = '';
+let contentHTML = '';
+let globalIndex = 0;
+const allIds = [];
+
+MODULES.forEach(mod => {
+  navHTML += `<div class="nav-group-title">${mod.name.split('—')[0].trim()}</div>`;
+  contentHTML += `<div class="module-divider">${mod.name}</div><div class="module-use-case">${mod.useCase}</div>`;
+
+  mod.topics.forEach(topic => {
+    globalIndex++;
+    allIds.push(topic.id);
+    navHTML += `<a class="nav-link" data-target="${topic.id}">${globalIndex}. ${topic.title.split('—')[0].trim()}</a>`;
+
+    const isDone = !!saved[topic.id];
+    contentHTML += `
+      <section class="topic" id="${topic.id}">
+        <div class="topic-head">
+          <div class="topic-num">${globalIndex}</div>
+          <h2>${topic.title}</h2>
+        </div>
+        <div class="ctx-grid">
+          <div class="ctx-box why"><span class="ctx-label">Why learn this?</span>${topic.why}</div>
+          <div class="ctx-box problem"><span class="ctx-label">What problem does it solve?</span>${topic.problem}</div>
+          <div class="ctx-box where"><span class="ctx-label">Where it's used, real world</span>${topic.where}</div>
+        </div>
+        <div class="live-problem">
+          <div class="lp-label">🧩 Today's live problem — solved together, step by step, on screen</div>
+          <p class="statement">${topic.statement}</p>
+          <div class="sample">${topic.sample}</div>
+          <div class="steps-label">Steps we'll follow, each tied back to the concept above:</div>
+          <ol class="steps-list">
+            ${topic.steps.map((s,i) => `<li><span class="snum">${i+1}</span><span>${s}</span></li>`).join('')}
+          </ol>
+        </div>
+        <div class="topic-footer">
+          <span class="checkbox ${isDone?'checked':''}" data-key="${topic.id}"></span>
+          <label data-key="${topic.id}">Solved together in class</label>
+        </div>
+      </section>`;
+  });
+});
+
+navList.innerHTML = navHTML;
+content.innerHTML = contentHTML;
+
+function updateProgress(){
+  const done = allIds.filter(id => saved[id]).length;
+  document.getElementById('progFill').style.width = Math.round((done/allIds.length)*100) + '%';
+  document.getElementById('progLabel').textContent = `${done} / ${allIds.length} solved in class`;
+}
+updateProgress();
+
+content.addEventListener('click', e => {
+  const box = e.target.closest('.checkbox');
+  const label = e.target.closest('label[data-key]');
+  const key = (box || label)?.getAttribute('data-key');
+  if (!key) return;
+  const nowDone = !saved[key];
+  saved[key] = nowDone;
+  document.querySelectorAll(`.checkbox[data-key="${key}"]`).forEach(c => c.classList.toggle('checked', nowDone));
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); } catch(err){}
+  updateProgress();
+});
+
+navList.addEventListener('click', e => {
+  const link = e.target.closest('.nav-link');
+  if (!link) return;
+  document.getElementById(link.dataset.target)?.scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const link = document.querySelector(`.nav-link[data-target="${entry.target.id}"]`);
+    if (!link) return;
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.nav-link.active').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-10% 0px -75% 0px' });
+document.querySelectorAll('.topic').forEach(sec => observer.observe(sec));
+</script>
+</body>
+</html>
